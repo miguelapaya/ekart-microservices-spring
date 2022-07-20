@@ -1,0 +1,30 @@
+server:
+  port: 9004
+
+spring:
+  application:
+    name: API-GATEWAY
+
+
+  cloud:
+    gateway:
+      routes:
+        - id: PRODUCT-SERVICE
+          uri:
+            lb://PRODUCT-SERVICE
+          predicates:
+          - Path=/product/**
+
+        - id: CART-SERVICE
+          uri:
+            lb://CART-SERVICE
+          predicates:
+            - Path=/my-cart/**
+
+        - id: PAYMENT-SERVICE
+          uri:
+            lb://PAYMENT-SERVICE
+          predicates:
+          - Path=/payment/**
+
+
